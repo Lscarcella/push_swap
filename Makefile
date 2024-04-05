@@ -3,7 +3,7 @@ DEPS = ./include/push_swap.h
 NAME = push_swap
 RM = rm -rf
 CC = gcc
-SRC_DIR = ./Src/
+SRC_DIR = ./src/
 SRC = $(SRC_DIR)main.c $(SRC_DIR)swap.c $(SRC_DIR)push_swap.c  $(SRC_DIR)check_and_store_arg.c
 LIBFT_DIR = ./libs/Libft
 

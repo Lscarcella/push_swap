@@ -3,23 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_store_arg.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/04 10:40:48 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:00:30 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
 
-void	init_struct(t_element **element)
-{
-	ft_memset(&element, 0, sizeof(element));
-}
-void	check_and_store_arg(t_element **snake, t_element **tail, char **argv)
+// void	init_struct(t_element **element)
+// {
+// 	ft_memset(&element, 0, sizeof(element));
+// }
+void	check_and_store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv)
 {
 	check_arg(argv);
-	store_arg(snake, tail, argv);
+	store_arg(top_of_stack, bot_of_stack, argv);
+	if (is_stack_sorted(top_of_stack))
+	{
+    exit(EXIT_SUCCESS);
+	}
+
 }
 void check_arg(char **argv)
 {
@@ -45,43 +50,54 @@ void check_arg(char **argv)
 	}
 }
 
-void	store_arg(t_element **head, t_element **tail, char **argv)
+void	store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv)
 {
 	int j;
 	t_element *node;
 
 	j = 1;
-	*head = NULL;
+	*top_of_stack = NULL;
+	*bot_of_stack = NULL;
 	while(argv[j])
 	{
-		node = (t_element *)malloc(sizeof(t_element));
-		if(!node)
-			exit(EXIT_FAILURE);
-		node->value = ft_atol(argv[j]);
-		if(!*head)
-			create_head_and_tail(head, node, tail);
-		else
-		{
-			(*tail)->next = node;
-			node->prev = (*tail);
-			(*tail) = node;
-		}
-		j++;
-	}
-	last_node(tail, head);
-	}
-
-	void	create_head_and_tail(t_element **head, t_element *node, t_element **tail)
+	node = (t_element *)malloc(sizeof(t_element));
+	if(!node)
+		exit(EXIT_FAILURE);
+	node->value = ft_atol(argv[j]);
+	if(!*bot_of_stack)
 	{
-		*head = node;
-		*tail = node;
-
-   	 	(*head)->next = NULL;
-   		(*tail)->next = NULL;
+		*bot_of_stack = node;
+		*top_of_stack = node;
 	}
-
-	void	last_node(t_element **tail, t_element **head)
+	else
 	{
-		(*tail)->next = *head;
-		(*head)->prev = (*tail);
+		(*top_of_stack)->next = node;
+		node->prev = (*top_of_stack);
+					(*top_of_stack) = node;
 	}
+	j++;
+}
+last_node(top_of_stack, bot_of_stack);
+}
+
+void	last_node(t_element **top_of_stack, t_element **bot_of_stack)
+{
+	(*top_of_stack)->next = *bot_of_stack;
+	(*bot_of_stack)->prev = *top_of_stack;
+}
+
+
+int is_stack_sorted(t_element **top_of_stack)
+{
+    t_element *ptr; 
+	
+	ptr = *top_of_stack;
+
+    while (ptr && ptr->prev)
+	{
+        if (ptr->value > ptr->prev->value)
+            return (FALSE);
+        ptr = ptr->prev;
+    }
+    return (TRUE);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/04 12:19:44 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:34:12 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,44 @@
 
 int main(int argc, char **argv)
 {
-	t_element	*snake;
-	t_element	*tail_a;
+	t_element	*top_of_stack;
+	t_element	*bot_of_stack;
 	t_element	*ptr;
 	
 	int	i;
 
 	i = 1;
-	
 	if(argc > 1)
 	{
-		init_struct(&snake);
-		check_and_store_arg(&snake, &tail_a, argv);
-		ptr = snake;
+		// init_struct(&top_of_stack);
+		check_and_store_arg(&top_of_stack, &bot_of_stack, argv);
+		// if(argc == 4)
+		// {
+		// 	is_stack_sorted(&top_of_stack);
+		// }
+		ptr = top_of_stack;
 		while (i < argc)
 		{
-			printf("snake_a : %d \n", ptr->value);
-			ptr = ptr->next;
+			printf("stack_a : %d \n", ptr->value);
+			ptr = ptr->prev;
 			i++;
 		}
+		printf("top_of_stack : %d \n", top_of_stack->value);
+
+		// swap(&top_of_stack, 'a');
+		// rotate(&top_of_stack, 'a');
+		// reverse_rotate(&top_of_stack, 'a');
 		
-		// swap(&tail_a, 'a');
-		rotate(&tail_a, 'a');
+		
 		i = 1;
-		ptr = snake;
+		ptr = top_of_stack;
 		while (i < argc)
 		{
-			printf("snake_a après opération : %d \n", ptr->value);
-			ptr = ptr->next;
+			printf("stack_a après opération : %d \n", ptr->value);
+			ptr = ptr->prev;
 			i++;
 		}
-		
+		printf("top_of_stack : %d \n", top_of_stack->value);
 		return(0);
 	}
 	else
