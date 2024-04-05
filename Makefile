@@ -4,7 +4,7 @@ NAME = push_swap
 RM = rm -rf
 CC = gcc
 SRC_DIR = ./Src/
-SRC = $(SRC_DIR)main.c $(SRC_DIR)push_swap.c  $(SRC_DIR)parsing.c
+SRC = $(SRC_DIR)main.c $(SRC_DIR)swap.c $(SRC_DIR)push_swap.c  $(SRC_DIR)check_and_store_arg.c
 LIBFT_DIR = ./libs/Libft
 
 all: $(NAME)
@@ -24,12 +24,12 @@ OBJ = $(SRC:.c=.o)
 # génère la bibliothèque en utilisant les fichiers objets. 
 $(NAME): $(OBJ)
 	@$(MAKE) -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -g -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
 	@echo "$(GREEN)Compilation successful. Library: $(NAME) $(WHITE)"
 
 # création des fichiers objets à partir des fichiers source. 
 %.o: %.c $(DEPS)
-	@$(CC) -c -o $@ $< -I$(LIBFT_DIR) $(CFLAGS) 
+	@$(CC) -c -o $@ $< -I$(LIBFT_DIR) $(CFLAGS)
 
 # supprime les fichiers objets. #
 clean:
