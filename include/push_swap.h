@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/05 15:56:06 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/10 14:14:52 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,17 @@ typedef struct s_element
 } t_element;
 
 
-// functions
-void 	check_arg(char **argv);
-void	check_and_store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv);
+// parsing
+void 	only_int_in_stack(char **argv);
+void	check_and_store_arg(t_element **top_of_stack, t_element **bot_of_stack, int argc, char **argv);
 void	store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv);
+int 	is_stack_already_sorted(t_element **top_of_stack, int argc);
+int		check_for_duplicates(t_element **top_of_stack);
 
-// void	init_struct(t_element **element);
-void	last_node(t_element **tail_a, t_element **head);
-int     is_stack_sorted(t_element **top_of_stack);
+// sorting
+void	little_sort(t_element *top_of_stack, t_element *bot_of_stack, int argc);
 
-// Opération
+// Opérations
 void	swap(t_element **tail, char instruction);
 void	rotate(t_element **top_of_stack, char instruction);
 void	reverse_rotate(t_element **top_of_stack, char instruction);

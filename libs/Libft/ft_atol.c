@@ -6,11 +6,20 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 19:12:33 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/03/29 13:25:46 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:04:42 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	check_limits(long int result)
+{
+	if (result < -2147483648 || result > 2147483647)
+	{
+		write(2, "Error\n", 6);
+		return ;
+	}
+}
 
 long int	ft_atol(char *str)
 {
@@ -24,9 +33,7 @@ long int	ft_atol(char *str)
 	if (!str)
 		return (0);
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-	{
 		i++;
-	}
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
@@ -38,5 +45,6 @@ long int	ft_atol(char *str)
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
+	check_limits(result);
 	return (result * sign);
 }

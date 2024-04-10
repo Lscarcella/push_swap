@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:03:32 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/03/29 13:26:21 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:01:55 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int			ft_memcmp(const void *s1, const void *s2, size_t n);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int			ft_atoi(const char *str);
 long int	ft_atol(char *str);
+void		check_limits(long int result);
 char		*ft_itoa(int n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
 char		*ft_strdup(const char *s1);

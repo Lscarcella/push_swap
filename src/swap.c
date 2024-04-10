@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/05 14:49:54 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/09 13:00:28 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	swap(t_element **top_of_stack, char instruction)
 	if(*top_of_stack == NULL || (*top_of_stack)->next == *top_of_stack)
 	return ;
 	
-	temp = (*top_of_stack)->prev->value;
-	(*top_of_stack)->prev->value = (*top_of_stack)->value;
+	temp = (*top_of_stack)->next->value;
+	(*top_of_stack)->next->value = (*top_of_stack)->value;
 	(*top_of_stack)->value = temp;
 	printf("s%c\n", instruction);
 }
@@ -32,7 +32,7 @@ void	swap(t_element **top_of_stack, char instruction)
 
 void	rotate(t_element **top_of_stack, char instruction)
 {
-	*top_of_stack = (*top_of_stack)->prev;
+	*top_of_stack = (*top_of_stack)->next;
 	printf("r%c\n", instruction);
 }
 
@@ -42,6 +42,6 @@ void	rotate(t_element **top_of_stack, char instruction)
 
 void	reverse_rotate(t_element **top_of_stack, char instruction)
 {
-	*top_of_stack = (*top_of_stack)->next;
+	*top_of_stack = (*top_of_stack)->prev;
 	printf("rr%c\n", instruction);
 }
