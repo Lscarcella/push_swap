@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/12 10:40:53 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:40:49 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,15 @@
 
 int main(int argc, char **argv)
 {
-	t_element	*top_of_stack;
-	t_element	*bot_of_stack;
+	t_element	*stack_a;
+
+	stack_a = NULL;
 
 	if(argc > 2)
 	{
-		check_and_store_arg(&top_of_stack, &bot_of_stack, argc, argv);
-		if (argc == 3 && top_of_stack->value > bot_of_stack->value)
-			swap(&top_of_stack, 'a');
-		if (argc == 4)
-		{
-			little_sort(top_of_stack, bot_of_stack);
-			return (SUCCESS);
-		}
+		check_and_store_arg(&stack_a, argc, argv);
+		if (argc < 6)
+			little_sort(stack_a, argc);
 	}
 	else
 	{

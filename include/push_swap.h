@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/10 14:55:42 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:42:26 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,22 @@ typedef struct s_element
 
 // parsing
 void 	only_int_in_stack(char **argv);
-void	check_and_store_arg(t_element **top_of_stack, t_element **bot_of_stack, int argc, char **argv);
-void	store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv);
-int 	is_stack_already_sorted(t_element **top_of_stack, int argc);
-int		check_for_duplicates(t_element **top_of_stack);
+void	check_and_store_arg(t_element **stack_a, int argc, char **argv);
+void	store_arg(t_element **stack_a, t_element *temp, char **argv);
+int 	is_stack_already_sorted(t_element **stack, int argc);
+int		check_for_duplicates(t_element **stack);
 
-// sorting
-void	little_sort(t_element *top_of_stack, t_element *bot_of_stack);
+// little sort
+void	little_sort(t_element *stack, int argc);
+void	three_int_sort(t_element *stack);
+void	five_int_sort(t_element *stack);
 
 // Opérations
 void	swap(t_element **tail, char instruction);
-void	rotate(t_element **top_of_stack, char instruction);
-void	reverse_rotate(t_element **top_of_stack, char instruction);
+void	rotate(t_element **stack, char instruction);
+void	reverse_rotate(t_element **stack, char instruction);
+void	push(t_element **src, t_element **dst, char instruction);
+void	dst_not_empty(t_element **dst, t_element *node);
 
 // Colors
 # define COLOR_BLACK "\033[0;30m" // Black

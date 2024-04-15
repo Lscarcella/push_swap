@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_store_arg.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/10 14:24:07 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:41:00 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
 
-void	check_and_store_arg(t_element **top_of_stack, t_element **bot_of_stack, int argc, char **argv)
+void	check_and_store_arg(t_element **stack_a, int argc, char **argv)
 {
+	t_element	*temp;
+
+	temp = NULL;
 	only_int_in_stack(argv);
-	store_arg(top_of_stack, bot_of_stack, argv);
-	if (is_stack_already_sorted(top_of_stack, argc))
+	store_arg(stack_a, temp, argv);
+	if (is_stack_already_sorted(stack_a, argc))
 		exit(EXIT_SUCCESS);
-	if (check_for_duplicates(top_of_stack))
+	if (check_for_duplicates(stack_a))
 		exit(EXIT_SUCCESS);
 }
 
@@ -46,42 +49,41 @@ void	only_int_in_stack(char **argv)
 	}
 }
 
-void	store_arg(t_element **top_of_stack, t_element **bot_of_stack, char **argv)
+void	store_arg(t_element **stack_a, t_element *temp, char **argv)
 {
 	int			j;
 	t_element	*node;
 
 	j = 1;
-	while (argv[j])
+	while (argv[j++])
 	{
 		node = (t_element *)malloc(sizeof(t_element));
 		if (!node)
 			exit(EXIT_FAILURE);
 		node->value = ft_atol(argv[j]);
-		if (!*top_of_stack)
+		if (!*stack_a)
 		{
-			*top_of_stack = node;
-			*bot_of_stack = node;
+			*stack_a = node;
+			temp = node;
 		}
 		else
 		{
-			(*bot_of_stack)->next = node;
-			node->prev = (*bot_of_stack);
-			(*bot_of_stack) = node;
+			temp->next = node;
+			node->prev = temp;
+			(*stack_a) = node;
 		}
-		j++;
 	}
-	(*bot_of_stack)->next = *top_of_stack;
-	(*top_of_stack)->prev = *bot_of_stack;
+	temp->next = *stack_a;
+	(*stack_a)->prev = temp;
 }
 
-int	is_stack_already_sorted(t_element **top_of_stack, int argc)
+int	is_stack_already_sorted(t_element **stack_a, int argc)
 {
     t_element	*ptr; 
 	int			i;
 
 	i = 1;
-	ptr = *top_of_stack;
+	ptr = *stack_a;
 
     while (i < argc - 1)
 	{
@@ -93,16 +95,16 @@ int	is_stack_already_sorted(t_element **top_of_stack, int argc)
 	return (TRUE);
 }
 
-int	check_for_duplicates(t_element **top_of_stack)
+int	check_for_duplicates(t_element **stack_a)
 {
 	t_element	*ptr1;
 	t_element	*ptr2;
 
-	ptr1 = *top_of_stack;
-	ptr2 = *top_of_stack;
-	while (ptr1 != (*top_of_stack)->prev)
+	ptr1 = *stack_a;
+	ptr2 = *stack_a;
+	while (ptr1 != (*stack_a)->prev)
 	{
-		while (ptr2 != (*top_of_stack)->prev)
+		while (ptr2 != (*stack_a)->prev)
 		{
 			ptr2 = ptr2->next;
 			if (ptr2->value == ptr1->value)
