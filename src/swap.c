@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/09 13:00:28 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:02:04 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	swap(t_element **top_of_stack, char instruction)
 	printf("s%c\n", instruction);
 }
 
+
+
 // ra (rotate a) : Décale d’une position vers le haut tous les élements de la pile a.
 // Le premier élément devient le dernier.
 
@@ -45,3 +47,41 @@ void	reverse_rotate(t_element **top_of_stack, char instruction)
 	*top_of_stack = (*top_of_stack)->prev;
 	printf("rr%c\n", instruction);
 }
+
+// pa (push a) : Prend le premier élément au sommet de src et le met sur dst.
+// Ne fait rien si dst est vide.
+// void	push(t_element **src, t_element **dst, char instruction)
+// {
+// 	t_element	*node;
+
+// 	if (*src == NULL)
+// 		return ;
+// 	node = *src;
+// 	if (node->next == node)
+// 		*src = NULL;
+// 	else
+// 	{
+// 		*src = node->next;
+// 		(*src)->prev = node->prev;
+// 		(*src)->prev->next = *src;
+// 	}
+// 	if (*dst == NULL)
+// 	{
+// 		node->next = node;
+// 		node->prev = node;
+// 		*dst = node;
+// 	}
+// 	else
+// 		dst_not_null(dst, node);
+// 	printf("p%c\n", instruction);
+// }
+
+// // put node at the top of dst.
+// void	dst_not_empty(t_element **dst, t_element *node)
+// {
+// 		node->next = *dst;
+// 		node->prev = (*dst)->prev;
+// 		(*dst)->prev->next = node;
+// 		(*dst)->prev = node;
+// 		*dst = node;
+// }

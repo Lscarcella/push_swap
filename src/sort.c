@@ -6,13 +6,13 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:43:58 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/10 14:17:12 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:17:56 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
 
-void	little_sort(t_element *top_of_stack, t_element *bot_of_stack, int argc)
+void	little_sort(t_element *top_of_stack, t_element *bot_of_stack)
 {
 	if (top_of_stack->value > top_of_stack->next->value
 		&& bot_of_stack->value > top_of_stack->value)
@@ -21,7 +21,7 @@ void	little_sort(t_element *top_of_stack, t_element *bot_of_stack, int argc)
 		&& bot_of_stack->value > top_of_stack->next->value)
 		rotate(&top_of_stack, 'a');
 	else if (top_of_stack->value < top_of_stack->next->value
-		&& top_of_stack->next->value > bot_of_stack->value)
+		&& top_of_stack->value > bot_of_stack->value)
 		reverse_rotate(&top_of_stack, 'a');
 	else if (top_of_stack->value > top_of_stack->next->value
 		&& top_of_stack->next->value > bot_of_stack->value)

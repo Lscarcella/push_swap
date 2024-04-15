@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/10 13:53:55 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:40:53 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@ int main(int argc, char **argv)
 	if(argc > 2)
 	{
 		check_and_store_arg(&top_of_stack, &bot_of_stack, argc, argv);
-		if(argc == 4)
+		if (argc == 3 && top_of_stack->value > bot_of_stack->value)
+			swap(&top_of_stack, 'a');
+		if (argc == 4)
 		{
-			little_stack_sort(top_of_stack, bot_of_stack, argc);
-			return (0);
+			little_sort(top_of_stack, bot_of_stack);
+			return (SUCCESS);
 		}
-		// swap(&top_of_stack, 'a');
-		// rotate(&top_of_stack, 'a');
-		// reverse_rotate(&top_of_stack, 'a');
-		return(0);
 	}
 	else
 	{
