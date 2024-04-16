@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:43:58 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/15 14:27:16 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/16 10:49:59 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	three_int_sort(t_element *stack)
 		&& stack->prev->value > stack->next->value)
 		rotate(&stack, 'a');
 	else if (stack->value < stack->next->value
-		&& stack->value > stack->prev->value)
-		reverse_rotate(&stack, 'a');
+			&& stack->value > stack->prev->value)
+			reverse_rotate(&stack, 'a');
 	else if (stack->value > stack->next->value
 		&& stack->next->value > stack->prev->value)
 	{

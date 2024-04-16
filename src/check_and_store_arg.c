@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_store_arg.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/15 14:41:00 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/16 11:08:26 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	store_arg(t_element **stack_a, t_element *temp, char **argv)
 	int			j;
 	t_element	*node;
 
-	j = 1;
-	while (argv[j++])
+	j = 0;
+	while (argv[++j])
 	{
 		node = (t_element *)malloc(sizeof(t_element));
 		if (!node)
@@ -70,7 +70,7 @@ void	store_arg(t_element **stack_a, t_element *temp, char **argv)
 		{
 			temp->next = node;
 			node->prev = temp;
-			(*stack_a) = node;
+			temp = node;
 		}
 	}
 	temp->next = *stack_a;
@@ -84,7 +84,8 @@ int	is_stack_already_sorted(t_element **stack_a, int argc)
 
 	i = 1;
 	ptr = *stack_a;
-
+	if (*stack_a == NULL || (*stack_a)->next == NULL)
+        return TRUE;
     while (i < argc - 1)
 	{
         if (ptr->value > ptr->next->value)
