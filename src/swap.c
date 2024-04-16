@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 07:56:06 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:26:47 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 // Do nothing if there is only one or no elements.
 #include "./../include/push_swap.h"
 
-void	swap(t_element **top_of_stack, char instruction)
+void	swap(t_element **stack, char instruction)
 {
 	int	temp;
 	
-	if(*top_of_stack == NULL || (*top_of_stack)->next == *top_of_stack)
+	if(*stack == NULL || (*stack)->next == *stack)
 	return ;
 	
-	temp = (*top_of_stack)->next->value;
-	(*top_of_stack)->next->value = (*top_of_stack)->value;
-	(*top_of_stack)->value = temp;
+	temp = (*stack)->next->value;
+	(*stack)->next->value = (*stack)->value;
+	(*stack)->value = temp;
 	printf("s%c\n", instruction);
 }
 
@@ -32,9 +32,9 @@ void	swap(t_element **top_of_stack, char instruction)
 // ra (rotate a) : Décale d’une position vers le haut tous les élements de la pile a.
 // Le premier élément devient le dernier.
 
-void	rotate(t_element **top_of_stack, char instruction)
+void	rotate(t_element **stack, char instruction)
 {
-	*top_of_stack = (*top_of_stack)->next;
+	*stack = (*stack)->next;
 	printf("r%c\n", instruction);
 }
 
@@ -42,9 +42,9 @@ void	rotate(t_element **top_of_stack, char instruction)
 // la pile a. Le dernier élément devient le premier.
 
 
-void	reverse_rotate(t_element **top_of_stack, char instruction)
+void	reverse_rotate(t_element **stack, char instruction)
 {
-	*top_of_stack = (*top_of_stack)->prev;
+	*stack = (*stack)->prev;
 	printf("rr%c\n", instruction);
 }
 
@@ -72,7 +72,7 @@ void	push(t_element **src, t_element **dst, char instruction)
 		*dst = node;
 	}
 	else
-		dst_not_null(dst, node);
+		dst_not_empty(dst, node);
 	printf("p%c\n", instruction);
 }
 
