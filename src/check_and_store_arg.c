@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 11:08:26 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:16:45 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	check_and_store_arg(t_element **stack_a, int argc, char **argv)
 	if (is_stack_already_sorted(stack_a, argc))
 		exit(EXIT_SUCCESS);
 	if (check_for_duplicates(stack_a))
+	{
+		write(2, "Error\n", 6);	
 		exit(EXIT_SUCCESS);
+	}
 }
 
 void	only_int_in_stack(char **argv)
