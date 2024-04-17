@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 10:42:34 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/17 13:53:05 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int		check_for_duplicates(t_element **stack);
 
 // little sort
 void	little_sort(t_element *stack, int argc);
+void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a);
 void	three_int_sort(t_element *stack);
+void	four_int_sort(t_element *stack_a);
 void	five_int_sort(t_element *stack);
 
 // Opérations
