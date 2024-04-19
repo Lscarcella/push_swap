@@ -6,7 +6,7 @@
 /*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/17 13:53:05 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/19 07:56:42 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ typedef struct s_element
 
 // parsing
 void 	only_int_in_stack(char **argv);
-void	check_and_store_arg(t_element **stack_a, int argc, char **argv);
+void	check_and_store_arg(t_element **stack_a, char **argv, int stack_en);
 void	store_arg(t_element **stack_a, t_element *temp, char **argv);
-int 	is_stack_already_sorted(t_element **stack, int argc);
+int	    is_stack_already_sorted(t_element **stack_a, int stack_len);
 int		check_for_duplicates(t_element **stack);
-
+int	    get_stack_len(t_element **stack_a, int count);
 // little sort
 void	little_sort(t_element *stack, int argc);
 void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a);

@@ -3,23 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_store_arg.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 11:16:45 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/19 07:56:34 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
 
-void	check_and_store_arg(t_element **stack_a, int argc, char **argv)
+void	check_and_store_arg(t_element **stack_a, char **argv, int stack_len)
 {
 	t_element	*temp;
 
 	temp = NULL;
 	only_int_in_stack(argv);
 	store_arg(stack_a, temp, argv);
-	if (is_stack_already_sorted(stack_a, argc))
+	stack_len = get_stack_len(stack_a, stack_len);
+	if (is_stack_already_sorted(stack_a, stack_len))
 		exit(EXIT_SUCCESS);
 	if (check_for_duplicates(stack_a))
 	{
@@ -80,21 +81,19 @@ void	store_arg(t_element **stack_a, t_element *temp, char **argv)
 	(*stack_a)->prev = temp;
 }
 
-int	is_stack_already_sorted(t_element **stack_a, int argc)
+int	is_stack_already_sorted(t_element **stack_a, int stack_len)
 {
-    t_element	*ptr; 
-	int			i;
-
-	i = 1;
+    t_element	*ptr;
+	
 	ptr = *stack_a;
 	if (*stack_a == NULL || (*stack_a)->next == NULL)
         return TRUE;
-    while (i < argc - 1)
+    while (stack_len > 0)
 	{
         if (ptr->value > ptr->next->value)
             return (FALSE);
         ptr = ptr->next;
-		i++;
+		stack_len--;
 	}
 	return (TRUE);
 }
@@ -118,4 +117,19 @@ int	check_for_duplicates(t_element **stack_a)
 		ptr2 = ptr1;
 	}
 	return (FALSE);
+}
+
+int	get_stack_len(t_element **stack_a, int count)
+{
+	t_element *ptr;
+	count = 1;
+
+	ptr = (*stack_a)->next;
+
+	while (ptr != *stack_a)
+	{
+		count++;
+		ptr = ptr->next;
+	}
+	return(count);
 }
