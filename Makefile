@@ -4,7 +4,7 @@ NAME = push_swap
 RM = rm -rf
 CC = gcc
 SRC_DIR = ./src/
-SRC = $(SRC_DIR)main.c $(SRC_DIR)little_sort.c $(SRC_DIR)swap.c $(SRC_DIR)check_and_store_arg.c
+SRC = $(SRC_DIR)main.c $(SRC_DIR)double_instructions.c $(SRC_DIR)little_sort.c $(SRC_DIR)instructions.c $(SRC_DIR)utils.c $(SRC_DIR)init_stack.c
 LIBFT_DIR = ./libs/Libft
 
 all: $(NAME)

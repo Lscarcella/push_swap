@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:03:32 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/08 11:01:55 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/19 11:47:40 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ long int	ft_atol(char *str);
 void		check_limits(long int result);
 char		*ft_itoa(int n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
-char		*ft_strdup(const char *s1);
+char		*ft_strdup(char *s1);
 size_t		ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t		ft_strlen(const char *s);
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);

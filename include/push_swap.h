@@ -6,7 +6,7 @@
 /*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/19 07:56:42 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/20 08:50:36 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ typedef struct s_element
 
 
 // parsing
-void 	only_int_in_stack(char **argv);
-void	check_and_store_arg(t_element **stack_a, char **argv, int stack_en);
-void	store_arg(t_element **stack_a, t_element *temp, char **argv);
-int	    is_stack_already_sorted(t_element **stack_a, int stack_len);
+void	create_stack(t_element **stack_a, t_element *temp, char **argv, int i);
+int	    init_stack(t_element **stack_a, int argc, char **argv, int stack_len);
+void    store_string_arg(char **argv, t_element **stack_a);
+void    store_tab_arg(char **argv, t_element **stack_a);
+
+//utils
+void	is_int(char **argv, int i);
+int	    is_sorted(t_element **stack_a, int stack_len);
 int		check_for_duplicates(t_element **stack);
-int	    get_stack_len(t_element **stack_a, int count);
-// little sort
-void	little_sort(t_element *stack, int argc);
-void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a);
-void	three_int_sort(t_element *stack);
-void	four_int_sort(t_element *stack_a);
-void	five_int_sort(t_element *stack);
+int	    get_stack_len(t_element **stack_a);
 
 // Opérations
 void	swap(t_element **tail, char instruction);
@@ -64,6 +62,17 @@ void	rotate(t_element **stack, char instruction);
 void	reverse_rotate(t_element **stack, char instruction);
 void	push(t_element **src, t_element **dst, char instruction);
 void	dst_not_empty(t_element **dst, t_element *node);
+void    swap_both(t_element **stack_a, t_element **stack_b);
+void    rotate_both(t_element **stack_a, t_element **stack_b);
+void    reverse_rotate_both(t_element **stack_a, t_element **stack_b);
+
+// little sort
+void	little_sort(t_element *stack, int argc);
+void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a);
+void	three_int_sort(t_element *stack);
+void	four_int_sort(t_element *stack_a);
+void	five_int_sort(t_element *stack);
+
 
 // Colors
 # define COLOR_BLACK "\033[0;30m" // Black

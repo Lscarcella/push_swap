@@ -1,31 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   double_instructions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/20 08:42:10 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/20 08:51:28 by lozkuro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+//ss : sa and sb at the same time.
+
+void    swap_both(t_element **stack_a, t_element **stack_b)
 {
-	t_element	*stack_a;
-	int stack_len;
+    swap(stack_a, 'a');
+    swap(stack_b, 'b');
+    printf("ss\n");
+}
 
-	stack_len = 0;
-	stack_a = NULL;
+//rr : ra and rb at the same time.
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
-		return(1);
-	else 
-		stack_len = init_stack(&stack_a, argc, argv, stack_len);
-	if (stack_len <= 5)
-		little_sort(stack_a, stack_len);
+void    rotate_both(t_element **stack_a, t_element **stack_b)
+{
+    rotate(stack_a, 'a');
+    rotate(stack_b, 'b');
+    printf("rr\n");
+}
 
+//rrr : rra and rrb at the same time.
+
+void    reverse_rotate_both(t_element **stack_a, t_element **stack_b)
+{
+    reverse_rotate(stack_a, 'a');
+    reverse_rotate(stack_b, 'b');
+    printf("rrr\n");
 }
