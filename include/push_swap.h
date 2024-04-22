@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:54 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/17 13:53:05 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/18 10:16:25 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a);
 void	three_int_sort(t_element *stack);
 void	four_int_sort(t_element *stack_a);
 void	five_int_sort(t_element *stack);
+
+// medium sort
 
 // Opérations
 void	swap(t_element **tail, char instruction);

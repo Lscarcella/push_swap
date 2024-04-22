@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 13:00:03 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:04:10 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ int main(int argc, char **argv)
 
 	stack_a = NULL;
 
-	if(argc > 2)
-	{
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
+	else if (argc == 2)
+		argv = ft_split(argv[1], ' ');
 		check_and_store_arg(&stack_a, argc, argv);
-		if (argc <= 6)
-			little_sort(stack_a, argc);
-	}
-	else
-	{
-		write(2, "Error\n", 6);
-		return(0);
-	}
+	if (argc <= 6)
+		little_sort(stack_a, argc);
 }
+
+
+
+
+
+
