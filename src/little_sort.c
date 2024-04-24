@@ -3,38 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   little_sort.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lozkuro <lozkuro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:43:58 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/17 13:59:02 by lozkuro          ###   ########.fr       */
+/*   Updated: 2024/04/22 14:37:01 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/push_swap.h"
 
-void	little_sort(t_element *stack, int argc)
+void	little_sort(t_element *stack, int stack_len)
 {
-	if (argc == 3 && stack->value > stack->prev->value)
+	if (stack_len == 2 && stack->value > stack->prev->value)
 	{
 		swap(&stack, 'a');
 		exit(EXIT_SUCCESS);	
 	}
-	if(argc == 4)
+	if(stack_len == 3)
 	{
 		three_int_sort(stack);
 		exit(EXIT_SUCCESS);	
 	}
-	else if(argc == 5)
+	else if(stack_len == 4)
 	{
 		four_int_sort(stack);
 		exit(EXIT_SUCCESS);
 	}
-	else if(argc == 6)
+	else if(stack_len == 5)
 	{
 		five_int_sort(stack);
 		exit(EXIT_SUCCESS);	
 	}
 }
+
 void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a)
 {
 	t_element *ptr;
@@ -60,6 +61,7 @@ void	find_min_and_pos(int *min1, int *min2, int *position, t_element *stack_a)
 		ptr = ptr->next;
 	}
 }
+
 void	three_int_sort(t_element *stack)
 {
 	int a = stack->value;
@@ -108,6 +110,7 @@ void	four_int_sort(t_element *stack_a)
 	three_int_sort(stack_a);
 	push(&stack_b, &stack_a, 'a');
 }
+
 void	five_int_sort(t_element *stack_a)
 {
 	t_element *stack_b;

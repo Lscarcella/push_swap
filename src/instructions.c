@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   instructions.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 10:26:47 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/22 10:08:33 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	swap(t_element **stack, char instruction)
 	(*stack)->value = temp;
 	printf("s%c\n", instruction);
 }
-
-
 
 // ra (rotate a) : Décale d’une position vers le haut tous les élements de la pile a.
 // Le premier élément devient le dernier.

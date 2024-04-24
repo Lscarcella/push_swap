@@ -1,69 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_and_store_arg.c                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 15:10:20 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/16 11:16:45 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:38:40 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "./../include/push_swap.h"
 
-void	check_and_store_arg(t_element **stack_a, int argc, char **argv)
+void	is_int(char **argv, int i)
 {
-	t_element	*temp;
+	int j;
 
-	temp = NULL;
-	only_int_in_stack(argv);
-	store_arg(stack_a, temp, argv);
-	if (is_stack_already_sorted(stack_a, argc))
-		exit(EXIT_SUCCESS);
-	if (check_for_duplicates(stack_a))
-	{
-		write(2, "Error\n", 6);	
-		exit(EXIT_SUCCESS);
-	}
+    while (argv[i])
+    {
+        j = 0;
+        while (argv[i][j])
+        {
+            if (j == 0 && (argv[i][j] == '-' || argv[i][j] == '+'))
+            {
+                if (ft_strlen(argv[i]) == 1 || !ft_isdigit(argv[i][j + 1]))
+                {
+                    write(2, "Error\n", 6);	
+                    exit(EXIT_FAILURE);
+                }
+            }
+            else if (!ft_isdigit(argv[i][j]))
+            {
+                write(2, "Error\n", 6);	
+                exit(EXIT_FAILURE);
+            }
+            j++;
+        }
+        i++;
+    }
 }
 
-void	only_int_in_stack(char **argv)
+void	create_stack(t_element **stack_a, t_element *temp, char **argv, int i)
 {
-	int	i;
-	int	j;
-
-	j = 1;
-	while (argv[j])
-	{
-		i = 0;
-		while (argv[j][i])
-		{
-			if (argv[j][i] == '-' || argv[j][i] == '+')
-				i++;
-			if (argv[j][i] < '0' || argv[j][i] > '9' )
-			{
-				write(2, "Error\n", 6);
-				exit(EXIT_FAILURE);
-			}
-			i++;
-		}
-		j++;
-	}
-}
-
-void	store_arg(t_element **stack_a, t_element *temp, char **argv)
-{
-	int			j;
 	t_element	*node;
 
-	j = 0;
-	while (argv[++j])
+	while (argv[i])
 	{
 		node = (t_element *)malloc(sizeof(t_element));
 		if (!node)
 			exit(EXIT_FAILURE);
-		node->value = ft_atol(argv[j]);
+		node->value = ft_atol(argv[i]);
+		node->simplified_value = 0;
 		if (!*stack_a)
 		{
 			*stack_a = node;
@@ -75,26 +63,26 @@ void	store_arg(t_element **stack_a, t_element *temp, char **argv)
 			node->prev = temp;
 			temp = node;
 		}
+		i++;
 	}
 	temp->next = *stack_a;
 	(*stack_a)->prev = temp;
 }
 
-int	is_stack_already_sorted(t_element **stack_a, int argc)
-{
-    t_element	*ptr; 
-	int			i;
 
-	i = 1;
+int	is_sorted(t_element **stack_a, int stack_len)
+{
+    t_element	*ptr;
+	
 	ptr = *stack_a;
 	if (*stack_a == NULL || (*stack_a)->next == NULL)
         return TRUE;
-    while (i < argc - 1)
+    while (stack_len > 0)
 	{
         if (ptr->value > ptr->next->value)
             return (FALSE);
         ptr = ptr->next;
-		i++;
+		stack_len--;
 	}
 	return (TRUE);
 }
@@ -119,3 +107,19 @@ int	check_for_duplicates(t_element **stack_a)
 	}
 	return (FALSE);
 }
+
+int	get_stack_len(t_element **stack_a)
+{
+    t_element	*ptr;
+	int count;
+	
+	count = 1;
+	ptr = (*stack_a)->next;
+	while(ptr != (*stack_a))
+	{
+		count++;
+		ptr = ptr->next;
+	}
+	return(count);
+}
+
