@@ -1,4 +1,4 @@
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g
 DEPS = libft.h
 NAME = libft.a
 CC = gcc

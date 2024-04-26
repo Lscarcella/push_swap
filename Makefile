@@ -47,5 +47,45 @@ fclean: clean
 
 re: fclean all
 
+val: all
+	valgrind --leak-check=full --show-leak-kinds=all ./push_swap
+
+test:
+	@echo "10 tests/ 0 - 500"
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..500).to_a.shuffle.join(' ')"` | wc -l
+	@echo "/	/	/	/	/"
+	@echo "10 tests/ 0 - 100"
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (1..100).to_a.shuffle.join(' ')"` | wc -l
+	@echo "/	/	/	/	/"
+	@echo "10 tests/ 0 - 3"
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+	@./push_swap `ruby -e "puts (0..2).to_a.shuffle.join(' ')"` | wc -l
+
 # indique que 'all', 'clean', 'fclean' et 're' ne sont pas des fichiers. #
 .PHONY: all clean fclean re

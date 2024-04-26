@@ -6,7 +6,7 @@
 /*   By: lscarcel <lscarcel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 11:46:44 by lscarcel          #+#    #+#             */
-/*   Updated: 2024/04/22 10:08:33 by lscarcel         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:52:34 by lscarcel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,16 @@
 void	swap(t_element **stack, char instruction)
 {
 	int	temp;
-	
-	if(*stack == NULL || (*stack)->next == *stack)
-	return ;
-	
+
+	if (*stack == NULL || (*stack)->next == *stack)
+		return ;
 	temp = (*stack)->next->value;
 	(*stack)->next->value = (*stack)->value;
 	(*stack)->value = temp;
 	printf("s%c\n", instruction);
 }
 
-// ra (rotate a) : Décale d’une position vers le haut tous les élements de la pile a.
+// ra (rotate a) : Décale d’une position vers le haut les élements de la pile a.
 // Le premier élément devient le dernier.
 
 void	rotate(t_element **stack, char instruction)
@@ -36,9 +35,8 @@ void	rotate(t_element **stack, char instruction)
 	printf("r%c\n", instruction);
 }
 
-// rra (reverse rotate a) : Décale d’une position vers le bas tous les élements de
+// rra (reverse rotate a) : Décale d’une position vers le bas les élements de a
 // la pile a. Le dernier élément devient le premier.
-
 
 void	reverse_rotate(t_element **stack, char instruction)
 {
@@ -77,9 +75,9 @@ void	push(t_element **src, t_element **dst, char instruction)
 // put node at the top of dst.
 void	dst_not_empty(t_element **dst, t_element *node)
 {
-		node->next = *dst;
-		node->prev = (*dst)->prev;
-		(*dst)->prev->next = node;
-		(*dst)->prev = node;
-		*dst = node;
+	node->next = *dst;
+	node->prev = (*dst)->prev;
+	(*dst)->prev->next = node;
+	(*dst)->prev = node;
+	*dst = node;
 }
